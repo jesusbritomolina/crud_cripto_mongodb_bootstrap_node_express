@@ -12,10 +12,10 @@ app.use(cors());
 const port = process.env.PORT || 3000;
 
 // Seteando el motor de plantillas ejs
-app.set('view engine','ejs')
-/*app.get('/', function(req, res) {
+//app.set('view engine','ejs')
+app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, '/views/index2.html'));
-});*/
+});
 
 // configuracion clasica para capturar datos de los inputs y usar el formato json
 app.use(express.urlencoded({extended:true}))
