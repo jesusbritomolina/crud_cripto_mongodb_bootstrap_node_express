@@ -26,6 +26,6 @@ app.use(express.static('public'))
 const criptos = require('./routes/cripto')
 app.use(criptos)
 
-app.listen(3000, ()=>{
+app.listen(port, ()=>{
     console.log('¡Server UP! en http://localhost:3000')
 })
