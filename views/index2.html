@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+  <!--
+    WARNING! Make sure that you match all Quasar related
+    tags to the same version! (Below it's "@1.18.10")
+  -->
+
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/quasar@1.18.10/dist/quasar.min.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <!-- Add the following at the end of your body tag -->
+    
+    <div id="q-app">
+      <!-- {{message}}
+      <div class="q-pa-md">
+        <q-checkbox />
+      </div> -->
+
+      <div class="container">
+        <div class="q-pa-md" style="max-width: 400px">
+          
+          <h5>Datos de la Criptomoneda</h5>
+          <q-form class="q-gutter-md">
+            <div>
+              <q-input filled type="text"  label="Nombre*" />
+            </div>
+          
+            <div>
+              <q-input filled type="number"  label="Precio*" />
+            </div>
+            
+            <div>
+              <q-input filled type="text"  label="Simbolo*" />
+            </div>
+
+            <q-file standout>
+              <template v-slot:append>
+                <q-icon name="attach_file" />
+              </template>
+            </q-file>
+
+            <div class="row justify-end">
+              <q-btn
+                type="submit"
+                
+                label="Registrar Cripto"
+                class="q-mt-md"
+                color="teal"
+              >
+                <template v-slot:loading>
+                  <q-spinner-facebook />
+                </template>
+              </q-btn>
+            </div>
+           
+          </q-form>
+
+          <div  class="q-pa-md">
+                    <table  class="q-table">
+                      <thead   class="thead-dark">
+                          <tr >
+                              <th >Nombre</th>
+                              <th>Precio</th>
+                              <th>Simbolo</th>
+                              <th>Imagen</th>
+                              <th>Acciones</th>
+                          </tr>
+                      </thead>
+                      <tbody >
+                          <tr class="tr-c">
+                              <td>Bitcoin</td>
+                              <td>42000</td>
+                              <td>BTC</td>
+                              <td>img.jpg</td>
+                              <td>
+                                <q-btn  label="Editar" push color="blue" />
+                              </td>
+                              <td>
+                                <q-btn  label="Eliminar" push color="red" />
+                              </td>
+                          </tr>
+                      </tbody>
+                    </table>
+                    </div>
+      
+        </div>
+        <!--<div class="shadow-lg p-3 mb-5 bg-body rounded">
+            <h4>Datos de la Criptomoneda</h4>
+            <form action="/crearconfile" method="POST" enctype="multipart/form-data">
+                <div class="col-md-6">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input id="nombre" name="nombre" type="text" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="precio" class="form-label">Precio</label>
+                    <input id="precio" name="precio" type="number" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="simbolo" class="form-label">Simbolo</label>
+                  <input id="simbolo" name="simbolo" type="text" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="imagen" class="form-label">Imagen: </label>
+                  <input type="file" id="imagencrypto" name="imagencrypto" value="" required>
+                </div>
+        </div> 
+                <button type="submit" class="w-100 btn btn-guardar btn-lg"><i class="bi bi-save"></i>Registrar Cripto</button>
+            </form>-->
+            <!-- Tabla Cripto  -->
+            <!-- <table id="tablaCripto" class="table mt-4">
+                <thead>
+                    <tr>
+                        <th style="display: none;">ID</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Simbolo</th>
+                        <th>Imagen</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% criptos.forEach( (cripto) => { %>
+                        <tr>
+                            <td style="display: none;"><%= cripto._id %></td>
+                            <td><%= cripto.nombre %></td>
+                            <td><%= cripto.precio %></td>
+                            <td><%= cripto.simbolo %></td>
+                            <td>
+                            <img id="imagendecrypto3232"
+                            width="42"
+                            src="data:cripto/<%=cripto.img.contentType%>;base64,<%=cripto.img.data.toString('base64')%>">
+                            </td>
+
+                            <td>
+                                <a type="button" class="btnEditar btn btn-outline-primary bi bi-pencil"></a>
+                                <a href="/borrar/<%= cripto._id %>" class="btn btn-outline-danger bi bi-trash"></a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table> -->
+    </div>
+  
+  <!-- Modal para Editar   -->
+  <!-- <div id="modalCripto" class="modal fade" tabindex="-1" aria-labelledby="modalCripto" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="exampleModalLabel">Editar Cripto</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form action="/editarconfile" method="POST" enctype="multipart/form-data">
+                <input name="id_editar" id="id_editar" type="text" hidden>
+              <div class="mb-3">
+                <label for="nombre_editar" class="col-form-label">Nombre:</label>
+                <input id="nombre_editar" name="nombre_editar" type="text" class="form-control" value="">
+              </div>
+              <div class="mb-3">
+                <label for="precio_editar" class="col-form-label">Precio:</label>
+                <input id="precio_editar" name="precio_editar" type="number" class="form-control" value="">
+              </div>
+              <div class="mb-3">
+                <label for="simbolo_editar" class="col-form-label">Simbolo:</label>
+                <input id="simbolo_editar" name="simbolo_editar" type="text" class="form-control" value="">
+              </div>
+              <div class="mb-3">
+                <label class="col-form-label">Imagen:</label>
+                <img id="imagen_muestra" width="42" src=""> 
+              </div>
+              <div class="mb-3">
+                <input type="file" id="imagen_editar" name="imagen_editar" value="">
+              </div>
+          </div>
+          <div class="modal-footer">              
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+    </div> -->
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@^2.0.0/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quasar@1.18.10/dist/quasar.umd.min.js"></script>
+    
+    <script>
+      /*
+        Example kicking off the UI. Obviously, adapt this to your specific needs.
+        Assumes you have a <div id="q-app"></div> in your <body> above
+       */
+      new Vue({
+        el: '#q-app',
+        data: function () {
+          return {
+            message: "hola"
+          }
+        },
+        methods: {},
+        // ...etc
+      })
+    </script>
+  </body>
+</html>

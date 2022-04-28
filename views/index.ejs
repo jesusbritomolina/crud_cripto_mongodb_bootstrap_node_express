@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Criptomonedas</title>
+    <style>
+        .container{
+            max-width: 960px;
+        }
+    </style>
+  </head>
+  <body>    
+    <div class="container">
+        <div class="shadow-lg p-3 mb-5 bg-body rounded">
+            <h4>Datos de la Criptomoneda</h4>
+            <form action="/crearconfile" method="POST" enctype="multipart/form-data">
+                <div class="col-md-6">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input id="nombre" name="nombre" type="text" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="precio" class="form-label">Precio</label>
+                    <input id="precio" name="precio" type="number" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="simbolo" class="form-label">Simbolo</label>
+                  <input id="simbolo" name="simbolo" type="text" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="imagen" class="form-label">Imagen: </label>
+                  <input type="file" id="imagencrypto" name="imagencrypto" value="" required>
+                </div>
+         </div> 
+                <button type="submit" class="w-100 btn btn-guardar btn-lg"><i class="bi bi-save"></i>Registrar Cripto</button>
+            </form>
+            <!-- Tabla Cripto  -->
+            <table id="tablaCripto" class="table mt-4">
+                <thead>
+                    <tr>
+                        <th style="display: none;">ID</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Simbolo</th>
+                        <th>Imagen</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% criptos.forEach( (cripto) => { %>
+                        <tr>
+                            <td style="display: none;"><%= cripto._id %></td>
+                            <td><%= cripto.nombre %></td>
+                            <td><%= cripto.precio %></td>
+                            <td><%= cripto.simbolo %></td>
+                            <td>
+                            <img id="imagendecrypto3232"
+                            width="42"
+                            src="data:cripto/<%=cripto.img.contentType%>;base64,<%=cripto.img.data.toString('base64')%>">
+                            </td>
+
+                            <td>
+                                <a type="button" class="btnEditar btn btn-outline-primary bi bi-pencil"></a>
+                                <a href="/borrar/<%= cripto._id %>" class="btn btn-outline-danger bi bi-trash"></a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+    </div>
+    
+    <!-- Modal para Editar   -->
+    <div id="modalCripto" class="modal fade" tabindex="-1" aria-labelledby="modalCripto" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+              <h5 class="modal-title" id="exampleModalLabel">Editar Cripto</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form action="/editarconfile" method="POST" enctype="multipart/form-data">
+                  <input name="id_editar" id="id_editar" type="text" hidden>
+                <div class="mb-3">
+                  <label for="nombre_editar" class="col-form-label">Nombre:</label>
+                  <input id="nombre_editar" name="nombre_editar" type="text" class="form-control" value="">
+                </div>
+                <div class="mb-3">
+                  <label for="precio_editar" class="col-form-label">Precio:</label>
+                  <input id="precio_editar" name="precio_editar" type="number" class="form-control" value="">
+                </div>
+                <div class="mb-3">
+                  <label for="simbolo_editar" class="col-form-label">Simbolo:</label>
+                  <input id="simbolo_editar" name="simbolo_editar" type="text" class="form-control" value="">
+                </div>
+                <div class="mb-3">
+                  <label class="col-form-label">Imagen:</label>
+                  <img id="imagen_muestra" width="42" src=""> 
+                </div>
+                <div class="mb-3">
+                  <input type="file" id="imagen_editar" name="imagen_editar" value="">
+                </div>
+            </div>
+            <div class="modal-footer">              
+              <button type="submit" class="btn btn-primary">Actualizar</button>
+            </div>
+          </form>
+          </div>
+        </div>
+    </div>
+
+
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    
+    <script src="js/code.js"></script>
+  </body>
+</html>
