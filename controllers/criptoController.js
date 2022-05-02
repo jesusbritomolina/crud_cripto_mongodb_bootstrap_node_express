@@ -15,25 +15,6 @@ module.exports.mostrar = (req, res) =>{
 }
 
 //Crear
-module.exports.crear = (req, res)=>{
-    //console.log(req.body)
-    const cripto = new Cripto({
-        nombre: req.body.nombre,
-        precio: req.body.precio,
-        simbolo: req.body.simbolo,
-        imagen: req.body.imagen
-    })
-    cripto.save(function(error,cripto){
-        if(error){
-            return res.status(500).json({
-                message: 'Error al crear la cripto'
-            })
-        }
-        res.redirect('/')
-    })
-}
-
-//Crear con file 
 module.exports.crearconfile = (req, res)=>{
    
     const cripto = new Cripto({
@@ -58,25 +39,6 @@ module.exports.crearconfile = (req, res)=>{
 }
 
 //Editar
-module.exports.editar = (req,res)=>{
-
-    const id = req.body.id_editar
-    const nombre = req.body.nombre_editar
-    const precio = req.body.precio_editar
-    const simbolo = req.body.simbolo_editar
-    const imagen = req.body.imagen_editar
-
-    Cripto.findByIdAndUpdate(id, {nombre, precio, simbolo, imagen}, (error, cripto)=>{
-        if(error){
-            return res.status(500).json({
-                message: 'Error actualizando la Criptomoneda'
-            })
-        }
-        res.redirect('/')
-    })
-}
-
-//Editar con file
 module.exports.editarconfile = (req,res)=>{
 
     const id = req.body.id_editar
